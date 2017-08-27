@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Prueba symplifica
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+ 
+<ion-item *ngFor="let dato of datos">
+    <ion-icon name="person" item-left large ></ion-icon>
+    <h2>Nombre: {{dato.person.names}}</h2>
+    <h2>Apellido: {{dato.person.lastName}}</h2>
+    <p>Tipo: {{dato.person.document.type.code}} Documento: {{dato.person.document.type.name}}</p>
+    <p>Número: {{dato.person.document.number}}</p>
+    <h2>Información de Contrato </h2>
+    <h2>Aportes</h2>
+    <p>Aportes de salud: {{salud | currency : 'COP' }}</p>
+    <p>Aportes de pensión: {{pension | currency : 'COP'}}</p>
+    <h2>Nomina</h2>
+    <p>Días laborados: {{dato.days}} días</p>
+    <p>Salario: {{salario}}</p>
+    <p *ngIf="dato.aux_transport == 1">Auxilio de transporte: {{aux_trans | currency : 'COP'}} Número de días: {{dato.days}} </p>
+    <h2>Nomina</h2>
+    <p>{{novedad}}</p>
+  </ion-item>
+
+    <form (ngSubmit)="logForm(todo.sueldo)">
+      <ion-item>
+        <ion-label>Sueldo</ion-label>
+        <ion-input type="number" *ngFor="let dato of datos" [(ngModel)]="todo.sueldo" name="sueldo" placeholder="{{dato.salary}}"></ion-input>
+      </ion-item>
+      <button ion-button type="submit" block>Cambiar Sueldo</button>
+    </form>
+
+  
+
+</ion-content>
